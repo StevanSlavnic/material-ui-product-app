@@ -3,6 +3,7 @@ import apiRequest from './../helpers/apiRequest'
 export const PRODUCT_REQUEST = 'PRODUCT_REQUEST'
 export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS'
 export const PRODUCT_FAILURE = 'PRODUCT_FAILURE'
+export const ADDING_QUANTITY = 'ADDING_QUANTITY'
 
 function productRequest() {
   return {
@@ -21,6 +22,14 @@ function productFailure(error) {
   return {
     type: PRODUCT_FAILURE,
     error,
+  }
+}
+
+export function addingQuantity(product, quantity) {
+  return {
+    type: 'ADDING_QUANTITY',
+    product,
+    quantity,
   }
 }
 

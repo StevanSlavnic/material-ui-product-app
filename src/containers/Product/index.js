@@ -1,31 +1,37 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { withTheme } from 'styled-components'
 import { Container, Grid, Divider } from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
+import { InView } from 'react-intersection-observer'
 import {
   ProductWrap,
   ProductImagesWrap,
   ProductDescWrap,
-  ProductAddWrap,
   DescriptionWrap,
   List,
 } from './Styled'
 import {
-  ButtonUI,
   CardUI,
   CardMediaUI,
   DividerUI,
   IconUI,
-  InputUI,
   LinkUI,
   TextUI,
   SpacerUI,
   ChipUI,
 } from '../../components/UI'
-import { fetchProduct } from '../../actions/productAction'
+import ProductAdd from './ProductAdd'
+import { fetchProduct } from '../../actions/product'
+import { displayAddProduct } from '../../actions/displayAddProduct'
 
 class Product extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isInView: false,
+    }
+  }
   componentDidMount() {
     this.props.fetchProduct()
   }
@@ -44,12 +50,12 @@ class Product extends Component {
 
       if (type === 'priceBreaks') {
         return (
-          <TextUI key={index}>
+          <div key={index}>
             <DividerUI />
             <SpacerUI size={1} />
             <TextUI>{`ex ${item} ${currency}/${unit}`}</TextUI>
             <SpacerUI size={1} />
-          </TextUI>
+          </div>
         )
       }
 
@@ -62,8 +68,6 @@ class Product extends Component {
   render() {
     const { product } = this.props
 
-    console.log(this.props)
-
     const images =
       product &&
       product.article.images.map(image => {
@@ -75,7 +79,7 @@ class Product extends Component {
         <ProductWrap>
           <Container maxWidth='md'>
             <Grid container spacing={3}>
-              <Grid item sm={7} md={6} lg={6}>
+              <Grid item xs={12} sm={7} md={6} lg={6}>
                 <ProductImagesWrap>
                   <div>
                     {images &&
@@ -86,12 +90,14 @@ class Product extends Component {
                           width='85px'
                           height='85px'
                           margin='0 0 10px 0'
+                          centered='true'
                           src={product.image}
                         >
-                          <CardMediaUI
+                          <IconUI className='icon-placeholder' size='h1' />
+                          {/* <CardMediaUI
                             image={product.image}
                             onClick={() => console.log(product.image)}
-                          />
+                          /> */}
                         </CardUI>
                       ))}
                   </div>
@@ -100,18 +106,15 @@ class Product extends Component {
                     width='350px'
                     height='350px'
                     margin='0 0 0 10px'
-                    src={
-                      this.props.product && this.props.product.article.images[0]
-                    }
+                    centered='true'
+                    src={product && product.article.images[0]}
                   >
-                    <CardMediaUI
-                      image={`${product && product.article.images[0]}`}
-                    />
+                    <IconUI className='icon-placeholder' size='h1' />
                   </CardUI>
                 </ProductImagesWrap>
               </Grid>
-              <Grid item sm={5} md={6} lg={6}>
-                <ProductDescWrap flex>
+              <Grid item xs={12} sm={5} md={6} lg={6}>
+                <ProductDescWrap>
                   <div>
                     <TextUI
                       variant='h1'
@@ -169,34 +172,14 @@ class Product extends Component {
 
                     <SpacerUI size={1} />
                   </div>
-                  <ProductAddWrap>
-                    <InputUI
-                      placeholder='Qty'
-                      inputProps={{ 'aria-label': 'quantity' }}
-                    />
-                    <SpacerUI size={2} horizontal>
-                      <Fragment>{product && product.article.unit}</Fragment>
-                    </SpacerUI>
-                    <SpacerUI size={3} horizontal>
-                      <ButtonUI
-                        variant='contained'
-                        color='secondary'
-                        fontSize='14'
-                        bold='true'
-                        disableElevation
-                        onClick={() => console.log('add to cart')}
-                        startIcon={
-                          <IconUI
-                            className='icon-cart-in'
-                            size='h6'
-                            color='#fff'
-                          />
-                        }
-                      >
-                        Add to cart
-                      </ButtonUI>
-                    </SpacerUI>
-                  </ProductAddWrap>
+                  <InView
+                    as='div'
+                    onChange={(inView, entry) =>
+                      this.props.displayAddProductComponent(inView)
+                    }
+                  >
+                    <ProductAdd product={product && product} />
+                  </InView>
                 </ProductDescWrap>
               </Grid>
             </Grid>
@@ -355,10 +338,13 @@ class Product extends Component {
 
 const mapStateToProps = state => ({
   product: state.product.data,
+  cartStyle: state.cartStyle.data,
+  displayAddProduct: state.displayAddProduct,
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchProduct: () => dispatch(fetchProduct()),
+  displayAddProductComponent: state => dispatch(displayAddProduct(state)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Product))
+export default connect(mapStateToProps, mapDispatchToProps)(Product)

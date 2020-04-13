@@ -12,6 +12,7 @@ import { LinkUI } from './LinkUI'
 import { TextUI } from './TextUI'
 import { ToolbarUI } from './ToolbarUI'
 import { SpacerUI } from './SpacerUI'
+import { SwingUI } from './SwingUI'
 
 export {
   AppBarUI,
@@ -28,4 +29,5 @@ export {
   TextUI,
   ToolbarUI,
   SpacerUI,
+  SwingUI,
 }

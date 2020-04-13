@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Toolbar, useScrollTrigger, Container } from '@material-ui/core'
+import { Toolbar, useScrollTrigger, Container, Hidden } from '@material-ui/core'
 import {
   AppBarUI,
   BadgeUI,
@@ -9,8 +9,10 @@ import {
   IconButtonUI,
   TextUI,
   ToolbarUI,
+  SwingUI,
 } from '../../UI'
 import theme from '../../../theme'
+import ProductAdd from '../../../containers/Product/ProductAdd'
 
 function ElevationScroll(props) {
   const { children } = props
@@ -30,11 +32,10 @@ ElevationScroll.propTypes = {
 }
 
 export default function ElevateAppBar(props) {
-  console.log(props)
   return (
-    <React.Fragment>
+    <>
       <ElevationScroll {...props}>
-        <AppBarUI color='default' elevation={props.elevation}>
+        <AppBarUI color='inherit' elevation={props.elevation}>
           <Container maxWidth='md'>
             <ToolbarUI>
               <div
@@ -42,13 +43,18 @@ export default function ElevateAppBar(props) {
                   display: 'flex',
                   justifyContent: 'space-between',
                   width: '100%',
+                  alignItems: 'center',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <TextUI variant='h6' color='secondary'>
-                    {props.productName}
-                  </TextUI>
+                <div>
+                  <Hidden smDown>
+                    <TextUI variant='h6' color='secondary'>
+                      {props.productName}
+                    </TextUI>
+                  </Hidden>
                 </div>
+
+                <>{!props.displayAddProductComponent && <ProductAdd />}</>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <IconButtonUI
                     edge='start'
@@ -66,27 +72,26 @@ export default function ElevateAppBar(props) {
                     color='inherit'
                     aria-label='open drawer'
                   >
-                    <IconUI
-                      className='icon-compare'
-                      color={theme.palette.grey[500]}
-                    />
+                    <IconUI className='icon-compare' />
                   </IconButtonUI>
 
                   <DividerUI height={63} orientation='vertical' flexItem />
-                  <IconButtonUI
-                    edge='start'
-                    color='inherit'
-                    aria-label='open drawer'
-                  >
-                    <BadgeUI
-                      badgeContent={props.cartQuantity}
-                      color='secondary'
-                    ></BadgeUI>
-                    <IconUI
-                      className='icon-cart'
-                      color={theme.palette.grey[500]}
-                    />
-                  </IconButtonUI>
+                  <SwingUI animate={props.cartStyle}>
+                    <IconButtonUI
+                      edge='start'
+                      color='inherit'
+                      aria-label='open drawer'
+                    >
+                      <BadgeUI
+                        badgeContent={props.cartQuantity}
+                        color='secondary'
+                      />
+                      <IconUI
+                        disableRipple={props.cartQuantity}
+                        className='icon-cart'
+                      />
+                    </IconButtonUI>
+                  </SwingUI>
                 </div>
               </div>
             </ToolbarUI>
@@ -94,6 +99,6 @@ export default function ElevateAppBar(props) {
         </AppBarUI>
       </ElevationScroll>
       <Toolbar />
-    </React.Fragment>
+    </>
   )
 }

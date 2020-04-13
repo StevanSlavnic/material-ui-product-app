@@ -12,14 +12,15 @@ class Layout extends Component {
   }
 
   render() {
-    const { product } = this.props
+    const { product, cartStyle, displayAddProduct } = this.props
 
     return (
       <div>
         <Header
           productName={product && product.article.title}
           cartQuantity={product && product.cart.items}
-          scrolled={this.state.mainScroll}
+          cartStyle={cartStyle && cartStyle}
+          displayAddProductComponent={displayAddProduct && displayAddProduct}
         />
         <main>{this.props.children}</main>
       </div>
@@ -29,6 +30,8 @@ class Layout extends Component {
 
 const mapStateToProps = state => ({
   product: state.product.data,
+  cartStyle: state.cartStyle.data,
+  displayAddProduct: state.displayAddProduct.data,
 })
 
 export default connect(mapStateToProps)(Layout)

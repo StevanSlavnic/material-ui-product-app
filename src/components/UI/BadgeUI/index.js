@@ -9,5 +9,6 @@ export const BadgeUI = styled(Badge)`
     min-width: 14px;
     padding: 0;
     font-size: 9px;
+    line-height: 1.2;
   }
 `

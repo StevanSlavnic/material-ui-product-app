@@ -2,9 +2,10 @@ import {
   PRODUCT_REQUEST,
   PRODUCT_SUCCESS,
   PRODUCT_FAILURE,
-} from './../actions/productAction'
+  ADDING_QUANTITY,
+} from './../actions/product'
 
-export default function contact(
+export default function product(
   state = {
     attempted: false,
     fetching: false,
@@ -25,6 +26,7 @@ export default function contact(
       }
     case PRODUCT_SUCCESS:
       return {
+        ...state,
         attempted: true,
         fetching: false,
         failed: false,
@@ -39,6 +41,15 @@ export default function contact(
         data: null,
         errorData: action.error,
       }
+    case ADDING_QUANTITY: {
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          cart: { items: state.data.cart.items + action.quantity * 1 },
+        },
+      }
+    }
     default:
       return state
   }
