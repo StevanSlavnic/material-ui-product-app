@@ -55,11 +55,13 @@ class ProductAdd extends Component {
             disableElevation
             onClick={() => this.handleAddQuantity(product && product, quantity)}
             onAnimationEnd={() => this.props.changeCartStyle(false)}
-            startIcon={
-              <IconUI className='icon-cart-in' size='h6' color='#fff' />
-            }
           >
-            <Hidden smDown>Add to cart</Hidden>
+            <IconUI className='icon-cart-in' size='h6' color='#fff' />
+            <Hidden smDown>
+              <SpacerUI size={1} horizontal>
+                Add to cart
+              </SpacerUI>
+            </Hidden>
           </ButtonUI>
         </SpacerUI>
       </ProductAddWrap>

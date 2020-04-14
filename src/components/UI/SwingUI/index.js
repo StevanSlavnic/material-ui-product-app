@@ -9,5 +9,5 @@ export const SwingUI = styled.div`
       ? css`
       .5s ${swingAnimation};
         `
-      : ''};
+      : 'none'};
 `

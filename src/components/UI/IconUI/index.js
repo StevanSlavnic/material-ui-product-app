@@ -4,5 +4,5 @@ import theme from '../../../theme'
 
 export const IconUI = styled.i`
   font-size: ${props => formatTextSize(props.size)};
-  color: ${props => (props.color ? props.color : theme.palette.grey[500])};
+  color: ${props => (props.color ? props.color : theme.palette.grey[400])};
 `

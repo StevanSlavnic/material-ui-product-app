@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Chip } from '@material-ui/core'
+import { formatTextSize } from '../../../helpers'
 import theme from '../../../theme'
 
 function getSize(props) {
@@ -7,6 +8,12 @@ function getSize(props) {
 }
 
 export const ChipUI = styled(Chip)`
+  font-size: ${props => formatTextSize(props.size)};
+  color: #ffffff;
+  font-weight: bold;
+  color: ${props => props.color};
+  text-transform: uppercase;
+
   ${props =>
     props.spacing &&
     !props.bottomOnly &&

@@ -4,7 +4,6 @@ import { formatTextSize } from '../../../../helpers'
 
 const TextUI = styled(Typography)`
   font-size: ${props => formatTextSize(props.size)};
-
   ${props => props.bold && 'font-weight: bold'};
   ${props => (props.centered ? 'text-align: center' : 'text-align: left')};
   ${props => props.alignRight && 'text-align: right'};

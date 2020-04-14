@@ -33,8 +33,6 @@ class Product extends Component {
   }
   componentDidMount() {
     this.props.fetchProduct()
-
-    console.log(this.props)
   }
 
   renderItems = (data, type, currency = null, unit = null) => {
@@ -142,7 +140,12 @@ class Product extends Component {
                       {product && product.article.title}
                     </TextUI>
                     <SpacerUI size={1} />
-                    <TextUI variant='h3' size='body2'>
+                    <TextUI
+                      variant='h3'
+                      size='body2'
+                      bold='true'
+                      color='textSecondary'
+                    >
                       {'by '}
                       <LinkUI
                         href={`${product && product.article.supplier_link}`}
@@ -150,6 +153,7 @@ class Product extends Component {
                         underline='none'
                         target='_blank'
                         rel='noreferrer'
+                        hovered
                       >
                         {`${product && product.article.supplier_name}`}
                       </LinkUI>
@@ -168,12 +172,12 @@ class Product extends Component {
                       bold='true'
                       color='primary'
                     >
-                      {`${product && product.article.price} ${
+                      {`${product && product.article.price.toFixed(2)} ${
                         product && product.article.currency
                       }`}
                       <TextUI variant='body1' size='body2' display='inline'>
                         {` +
-                      ${product && product.article.transport_costs}
+                      ${product && product.article.transport_costs.toFixed(2)}
                       ${product && product.article.currency} shipping `}
                         <IconUI className='icon-discount' size='body1' />
                       </TextUI>
@@ -253,15 +257,22 @@ class Product extends Component {
                     {product &&
                       product.article.attachments.map((item, i) => (
                         <div key={i}>
-                          <IconUI className='icon-attachment' size='body4' />
+                          <IconUI
+                            className='icon-attachment'
+                            size='body4'
+                            color='primary'
+                          />
                           <LinkUI
                             href={`${item.file_link}`}
                             underline='none'
                             target='_blank'
                             rel='noreferrer'
                             size='body2'
+                            hovered
                           >
-                            {`${item.file_label}`}
+                            <TextUI display='inline' size='body2' bold='true'>
+                              {`${item.file_label}`}
+                            </TextUI>
                           </LinkUI>
                         </div>
                       ))}
@@ -283,6 +294,7 @@ class Product extends Component {
                           label={item}
                           spacing={1}
                           wrapped='true'
+                          size='body2'
                         />
                       ))}
                   </div>
@@ -336,9 +348,10 @@ class Product extends Component {
                             bold='true'
                             color='textPrimary'
                           >
-                            {` ${product && product.article.transport_costs} ${
-                              product && product.article.currency
-                            }`}
+                            {` ${
+                              product &&
+                              product.article.transport_costs.toFixed(2)
+                            } ${product && product.article.currency}`}
                           </TextUI>
                         </TextUI>
                       </li>

@@ -47,7 +47,7 @@ export default function ElevateAppBar(props) {
               >
                 <div>
                   <Hidden xsDown>
-                    <TextUI variant='h6' color='secondary'>
+                    <TextUI variant='h6' bold='true' color='secondary'>
                       {props.productName}
                     </TextUI>
                   </Hidden>
