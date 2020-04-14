@@ -1,20 +1,23 @@
 import { createMuiTheme } from '@material-ui/core/styles'
+import grey from '@material-ui/core/colors/grey'
 
-const sourceSansPro = {
-  fontFamily: 'Source Sans Pro',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-  fontWeight: 400,
-  src: `
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: 'Source Sans Pro, sans-serif',
+    fontStyle: 'normal',
+    fontDisplay: 'swap',
+    fontWeight: 500,
+    src: `
     local('Source Sans Pro'),
     local('Source-Sans-Pro'),
     url('./assets/fonts/SourceSansPro-Regular.otf') format('opentype')
   `,
-}
-
-const theme = createMuiTheme({
-  typography: {
-    ...sourceSansPro,
+  },
+  palette: {
+    primary: { main: grey[700], darken: grey[900] },
+    secondary: {
+      main: '#e45144',
+    },
   },
   fontSize: {
     xxl: 160,
@@ -30,9 +33,6 @@ const theme = createMuiTheme({
     body2: 14,
     body3: 12,
     body4: 10,
-  },
-  color: {
-    primary: '#red',
   },
 })
 

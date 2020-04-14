@@ -3,21 +3,21 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import App from './App'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import theme from './theme'
 import configureStore from './store'
 import * as serviceWorker from './serviceWorker'
+import theme from './theme'
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <Provider store={configureStore()}>
-      <BrowserRouter>
+  <Provider store={configureStore()}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <App />
-      </BrowserRouter>
-    </Provider>
-  </ThemeProvider>,
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 )
 

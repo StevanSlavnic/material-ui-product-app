@@ -3,12 +3,8 @@ import { Typography } from '@material-ui/core'
 import { formatTextSize } from '../../../../helpers'
 
 const TextUI = styled(Typography)`
-  font-family: ${props =>
-    props.brandText
-      ? props.theme.typography.brandFamily
-      : props.theme.typography.fontFamily};
   font-size: ${props => formatTextSize(props.size)};
-  color: ${props => props.color};
+
   ${props => props.bold && 'font-weight: bold'};
   ${props => (props.centered ? 'text-align: center' : 'text-align: left')};
   ${props => props.alignRight && 'text-align: right'};

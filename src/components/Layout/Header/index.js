@@ -1,12 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Toolbar,
-  useScrollTrigger,
-  Container,
-  Hidden,
-  Grid,
-} from '@material-ui/core'
+import { Toolbar, useScrollTrigger, Container, Hidden } from '@material-ui/core'
 import {
   AppBarUI,
   BadgeUI,
@@ -52,7 +46,7 @@ export default function ElevateAppBar(props) {
                 alignItems='center'
               >
                 <div>
-                  <Hidden smDown>
+                  <Hidden xsDown>
                     <TextUI variant='h6' color='secondary'>
                       {props.productName}
                     </TextUI>

@@ -38,10 +38,31 @@ class Product extends Component {
   }
 
   renderItems = (data, type, currency = null, unit = null) => {
-    let listItems = { ...data }
+    const listItems = { ...data }
 
-    let result = Object.entries(listItems).map(([key, value]) => {
-      return `${key}: ${value}`
+    const result = Object.entries(listItems).map(([key, value]) => {
+      if (type === 'features') {
+        return (
+          <>
+            <TextUI variant='h6' color='textSecondary' size='body2' bold='true'>
+              {key}:
+              <TextUI
+                color='textPrimary'
+                size='body2'
+                bold='true'
+                display='inline'
+              >
+                {` ${value}`}
+              </TextUI>
+            </TextUI>
+          </>
+        )
+      }
+      if (type === 'priceBreaks') {
+        return `${key}: ${value}`
+      }
+
+      return null
     })
 
     const items = result.map((item, index) => {
@@ -54,7 +75,11 @@ class Product extends Component {
           <div key={index}>
             <DividerUI />
             <SpacerUI size={1} />
-            <TextUI>{`ex ${item} ${currency}/${unit}`}</TextUI>
+            <TextUI
+              color='textPrimary'
+              size='body2'
+              bold='true'
+            >{`ex ${item} ${currency}/${unit}`}</TextUI>
             <SpacerUI size={1} />
           </div>
         )
@@ -113,21 +138,16 @@ class Product extends Component {
               <Grid item xs={12} sm={5} md={6} lg={6}>
                 <ProductDescWrap>
                   <div>
-                    <TextUI
-                      variant='h1'
-                      size='h6'
-                      color='textPrimary'
-                      bold='true'
-                    >
+                    <TextUI variant='h1' size='h6' bold='true' color='primary'>
                       {product && product.article.title}
                     </TextUI>
                     <SpacerUI size={1} />
-                    <TextUI variant='h3' size='body2' color='textSecondary'>
+                    <TextUI variant='h3' size='body2'>
                       {'by '}
                       <LinkUI
                         href={`${product && product.article.supplier_link}`}
+                        size='body2'
                         underline='none'
-                        color='primary'
                         target='_blank'
                         rel='noreferrer'
                       >
@@ -144,26 +164,21 @@ class Product extends Component {
                     <SpacerUI size={1} />
                     <TextUI
                       variant='h2'
-                      color='textPrimary'
                       size='body1'
                       bold='true'
+                      color='primary'
                     >
                       {`${product && product.article.price} ${
                         product && product.article.currency
                       }`}
-                      <TextUI
-                        variant='body1'
-                        size='body2'
-                        color='textSecondary'
-                        display='inline'
-                      >
+                      <TextUI variant='body1' size='body2' display='inline'>
                         {` +
                       ${product && product.article.transport_costs}
                       ${product && product.article.currency} shipping `}
                         <IconUI className='icon-discount' size='body1' />
                       </TextUI>
                     </TextUI>
-                    <TextUI variant='body1' size='body2' color='textSecondary'>
+                    <TextUI variant='body1' size='body2' color='primary'>
                       all prices incl. 10% taxes
                     </TextUI>
                     <SpacerUI size={1} />
@@ -187,7 +202,7 @@ class Product extends Component {
               DESCRIPTION
             </TextUI>
             <SpacerUI size={1} />
-            <TextUI variant='h3' size='body2' color='textSecondary' bold='true'>
+            <TextUI size='body2' bold='true' color='primary'>
               {product && product.article.description_long}
             </TextUI>
             <SpacerUI size={3} />
@@ -229,8 +244,8 @@ class Product extends Component {
                     <TextUI
                       variant='h3'
                       size='body2'
-                      color='textSecondary'
                       bold='true'
+                      color='textSecondary'
                     >
                       Attachments
                     </TextUI>
@@ -244,7 +259,7 @@ class Product extends Component {
                             underline='none'
                             target='_blank'
                             rel='noreferrer'
-                            color='primary'
+                            size='body2'
                           >
                             {`${item.file_label}`}
                           </LinkUI>
@@ -255,8 +270,8 @@ class Product extends Component {
                     <TextUI
                       variant='h3'
                       size='body2'
-                      color='textSecondary'
                       bold='true'
+                      color='textSecondary'
                     >
                       Keywords
                     </TextUI>
@@ -287,16 +302,65 @@ class Product extends Component {
                   <div>
                     <List>
                       <li>
-                        Minimum order:
-                        {product && product.article.minimum_order_quantity}
+                        <TextUI
+                          variant='subtitle2'
+                          size='body2'
+                          bold='true'
+                          color='textSecondary'
+                        >
+                          Minimum order:
+                          <TextUI
+                            display='inline'
+                            size='body2'
+                            bold='true'
+                            color='textPrimary'
+                          >
+                            {` ${
+                              product && product.article.minimum_order_quantity
+                            }
+                          ${product && product.article.unit}`}
+                          </TextUI>
+                        </TextUI>
                       </li>
                       <li>
-                        Shipping:
-                        {product && product.article.transport_costs}
+                        <TextUI
+                          variant='subtitle2'
+                          size='body2'
+                          bold='true'
+                          color='textSecondary'
+                        >
+                          Shipping:
+                          <TextUI
+                            display='inline'
+                            size='body2'
+                            bold='true'
+                            color='textPrimary'
+                          >
+                            {` ${product && product.article.transport_costs} ${
+                              product && product.article.currency
+                            }`}
+                          </TextUI>
+                        </TextUI>
                       </li>
                       <li>
-                        Delivery:
-                        {product && product.article.delivery_time}
+                        <TextUI
+                          variant='subtitle2'
+                          size='body2'
+                          bold='true'
+                          color='textSecondary'
+                        >
+                          Delivery:
+                          <TextUI
+                            display='inline'
+                            size='body2'
+                            bold='true'
+                            color='textPrimary'
+                          >
+                            {` ${
+                              product && product.article.delivery_time
+                            } days`}
+                          </TextUI>
+                        </TextUI>
                       </li>
                       <SpacerUI size={2} />
                     </List>
@@ -305,8 +369,8 @@ class Product extends Component {
                       <TextUI
                         variant='h3'
                         size='body2'
-                        color='textSecondary'
                         bold='true'
+                        color='textSecondary'
                       >
                         Price breaks
                       </TextUI>
