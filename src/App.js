@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { Product } from './containers'
+import Layout from './components/Layout'
+import './assets/icons/css/pure.css'
+import './assets/fonts/fonts.css'
+import './App.scss'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    const publicRoutes = []
+
+    publicRoutes.push({
+      path: '/',
+      exact: true,
+      component: Product,
+    })
+
+    const routes = [...publicRoutes]
+
+    return (
+      <React.Fragment>
+        <Layout>
+          <Switch>
+            {routes.map(route => (
+              <Route
+                key={route.path}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
+              />
+            ))}
+          </Switch>
+        </Layout>
+      </React.Fragment>
+    )
+  }
 }
 
-export default App;
+export default App
