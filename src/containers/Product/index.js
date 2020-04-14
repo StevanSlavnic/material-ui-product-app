@@ -12,7 +12,6 @@ import {
 } from './Styled'
 import {
   CardUI,
-  CardMediaUI,
   DividerUI,
   IconUI,
   LinkUI,
@@ -34,6 +33,8 @@ class Product extends Component {
   }
   componentDidMount() {
     this.props.fetchProduct()
+
+    console.log(this.props)
   }
 
   renderItems = (data, type, currency = null, unit = null) => {
@@ -94,10 +95,6 @@ class Product extends Component {
                           src={product.image}
                         >
                           <IconUI className='icon-placeholder' size='h1' />
-                          {/* <CardMediaUI
-                            image={product.image}
-                            onClick={() => console.log(product.image)}
-                          /> */}
                         </CardUI>
                       ))}
                   </div>
@@ -109,7 +106,7 @@ class Product extends Component {
                     centered='true'
                     src={product && product.article.images[0]}
                   >
-                    <IconUI className='icon-placeholder' size='h1' />
+                    <IconUI className='icon-placeholder' size='xxl' />
                   </CardUI>
                 </ProductImagesWrap>
               </Grid>
@@ -169,7 +166,6 @@ class Product extends Component {
                     <TextUI variant='body1' size='body2' color='textSecondary'>
                       all prices incl. 10% taxes
                     </TextUI>
-
                     <SpacerUI size={1} />
                   </div>
                   <InView
@@ -178,7 +174,7 @@ class Product extends Component {
                       this.props.displayAddProductComponent(inView)
                     }
                   >
-                    <ProductAdd product={product && product} />
+                    <ProductAdd />
                   </InView>
                 </ProductDescWrap>
               </Grid>

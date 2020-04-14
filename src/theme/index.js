@@ -17,6 +17,9 @@ const theme = createMuiTheme({
     ...sourceSansPro,
   },
   fontSize: {
+    xxl: 160,
+    xl: 60,
+    large: 40,
     h1: 36,
     h2: 26,
     h3: 24,
@@ -27,6 +30,9 @@ const theme = createMuiTheme({
     body2: 14,
     body3: 12,
     body4: 10,
+  },
+  color: {
+    primary: '#red',
   },
 })
 

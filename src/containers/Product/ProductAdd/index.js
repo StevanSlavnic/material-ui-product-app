@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ProductAddWrap } from '../Styled'
+import { Hidden } from '@material-ui/core'
 import { ButtonUI, IconUI, InputUI, SpacerUI } from '../../../components/UI'
 import { addingQuantity } from '../../../actions/product'
 import { changeCartStyle } from '../../../actions/cartStyle'
@@ -55,10 +56,10 @@ class ProductAdd extends Component {
             onClick={() => this.handleAddQuantity(product && product, quantity)}
             onAnimationEnd={() => this.props.changeCartStyle(false)}
             startIcon={
-              <IconUI className='icon-cart-in' size='h1' color='#fff' />
+              <IconUI className='icon-cart-in' size='h6' color='#fff' />
             }
           >
-            Add to cart
+            <Hidden smDown>Add to cart</Hidden>
           </ButtonUI>
         </SpacerUI>
       </ProductAddWrap>

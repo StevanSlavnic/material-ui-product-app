@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Toolbar, useScrollTrigger, Container, Hidden } from '@material-ui/core'
+import {
+  Toolbar,
+  useScrollTrigger,
+  Container,
+  Hidden,
+  Grid,
+} from '@material-ui/core'
 import {
   AppBarUI,
   BadgeUI,
@@ -11,6 +17,7 @@ import {
   ToolbarUI,
   SwingUI,
 } from '../../UI'
+import { HeaderWrap } from './Styled'
 import theme from '../../../theme'
 import ProductAdd from '../../../containers/Product/ProductAdd'
 
@@ -38,13 +45,11 @@ export default function ElevateAppBar(props) {
         <AppBarUI color='inherit' elevation={props.elevation}>
           <Container maxWidth='md'>
             <ToolbarUI>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                  alignItems: 'center',
-                }}
+              <HeaderWrap
+                container
+                direction='row'
+                justify='space-between'
+                alignItems='center'
               >
                 <div>
                   <Hidden smDown>
@@ -93,7 +98,7 @@ export default function ElevateAppBar(props) {
                     </IconButtonUI>
                   </SwingUI>
                 </div>
-              </div>
+              </HeaderWrap>
             </ToolbarUI>
           </Container>
         </AppBarUI>
