@@ -4,8 +4,6 @@ In the project directory run following command to add .env file and change REACT
 
 ### `cp .env.dist .env`
 
-## Install dependencies
-
 In project directory run following command to install dependencies:
 
 ### `yarn install`
