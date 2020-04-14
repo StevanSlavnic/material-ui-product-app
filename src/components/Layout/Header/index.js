@@ -101,3 +101,11 @@ export default function ElevateAppBar(props) {
     </>
   )
 }
+
+ElevateAppBar.propTypes = {
+  elevation: PropTypes.bool,
+  productName: PropTypes.string,
+  cartQuantity: PropTypes.number,
+  cartStyle: PropTypes.bool,
+  displayAddProductComponent: PropTypes.bool,
+}

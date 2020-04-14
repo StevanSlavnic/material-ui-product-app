@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { Container, Grid, Divider } from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
 import { InView } from 'react-intersection-observer'
@@ -153,7 +154,7 @@ class Product extends Component {
                         underline='none'
                         target='_blank'
                         rel='noreferrer'
-                        hovered
+                        hovered='true'
                       >
                         {`${product && product.article.supplier_name}`}
                       </LinkUI>
@@ -189,7 +190,7 @@ class Product extends Component {
                   </div>
                   <InView
                     as='div'
-                    onChange={(inView, entry) =>
+                    onChange={inView =>
                       this.props.displayAddProductComponent(inView)
                     }
                   >
@@ -268,7 +269,7 @@ class Product extends Component {
                             target='_blank'
                             rel='noreferrer'
                             size='body2'
-                            hovered
+                            hovered='true'
                           >
                             <TextUI display='inline' size='body2' bold='true'>
                               {`${item.file_label}`}
@@ -294,7 +295,7 @@ class Product extends Component {
                           label={item}
                           spacing={1}
                           wrapped='true'
-                          size='body2'
+                          size='small'
                         />
                       ))}
                   </div>
@@ -419,5 +420,11 @@ const mapDispatchToProps = dispatch => ({
   fetchProduct: () => dispatch(fetchProduct()),
   displayAddProductComponent: state => dispatch(displayAddProduct(state)),
 })
+
+Product.propTypes = {
+  fetchProduct: PropTypes.func.isRequired,
+  displayAddProductComponent: PropTypes.func.isRequired,
+  product: PropTypes.object,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product)

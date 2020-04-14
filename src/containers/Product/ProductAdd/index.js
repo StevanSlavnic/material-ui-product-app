@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { ProductAddWrap } from '../Styled'
 import { Hidden } from '@material-ui/core'
 import { ButtonUI, IconUI, InputUI, SpacerUI } from '../../../components/UI'
@@ -77,5 +78,11 @@ const mapDispatchToProps = dispatch => ({
   addQuantity: (state, quantity) => dispatch(addingQuantity(state, quantity)),
   changeCartStyle: state => dispatch(changeCartStyle(state)),
 })
+
+ProductAdd.propTypes = {
+  addQuantity: PropTypes.func.isRequired,
+  changeCartStyle: PropTypes.func.isRequired,
+  product: PropTypes.object,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductAdd)

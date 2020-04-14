@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "js-base64": "^2.5.2",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
@@ -28,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js src/**/*.jsx"
   },
   "eslintConfig": {
     "extends": "react-app"
