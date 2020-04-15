@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Header from './Header'
 
@@ -7,12 +8,27 @@ class Layout extends Component {
     super(props)
 
     this.state = {
-      mainScroll: false,
+      mainScroll: 0,
+    }
+
+    this.myRef = React.createRef()
+  }
+
+  listenScrollEvent() {
+    if (this.myRef.current.scrollTop !== 0) {
+      this.setState({
+        mainScroll: 1,
+      })
+    } else {
+      this.setState({
+        mainScroll: 0,
+      })
     }
   }
 
   render() {
     const { product, cartStyle, displayAddProduct } = this.props
+    const { mainScroll } = this.state
 
     return (
       <div>
@@ -21,8 +37,11 @@ class Layout extends Component {
           cartQuantity={product && product.cart.items}
           cartStyle={cartStyle && cartStyle}
           displayAddProductComponent={displayAddProduct && displayAddProduct}
+          scroll={mainScroll}
         />
-        <main>{this.props.children}</main>
+        <main onScroll={() => this.listenScrollEvent()} ref={this.myRef}>
+          {this.props.children}
+        </main>
       </div>
     )
   }
@@ -33,5 +52,12 @@ const mapStateToProps = state => ({
   cartStyle: state.cartStyle.data,
   displayAddProduct: state.displayAddProduct.data,
 })
+
+Layout.propTypes = {
+  children: PropTypes.element,
+  product: PropTypes.object,
+  cartStyle: PropTypes.bool,
+  displayAddProduct: PropTypes.bool,
+}
 
 export default connect(mapStateToProps)(Layout)

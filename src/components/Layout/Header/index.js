@@ -28,15 +28,21 @@ function ElevationScroll(props) {
   })
 }
 
-ElevationScroll.propTypes = {
-  children: PropTypes.element.isRequired,
+ElevateAppBar.propTypes = {
+  children: PropTypes.element,
+  elevation: PropTypes.bool,
+  productName: PropTypes.string,
+  cartQuantity: PropTypes.number,
+  cartStyle: PropTypes.bool,
+  displayAddProductComponent: PropTypes.bool,
+  scroll: PropTypes.number,
 }
 
 export default function ElevateAppBar(props) {
   return (
     <>
       <ElevationScroll {...props}>
-        <AppBarUI color='inherit' elevation={props.elevation}>
+        <AppBarUI color='inherit' scroll={props.scroll}>
           <Container maxWidth='md'>
             <ToolbarUI>
               <HeaderWrap
@@ -100,12 +106,4 @@ export default function ElevateAppBar(props) {
       <Toolbar />
     </>
   )
-}
-
-ElevateAppBar.propTypes = {
-  elevation: PropTypes.bool,
-  productName: PropTypes.string,
-  cartQuantity: PropTypes.number,
-  cartStyle: PropTypes.bool,
-  displayAddProductComponent: PropTypes.bool,
 }
