@@ -6,3 +6,8 @@ export const HeaderWrap = styled.div`
   width: 100%;
   align-items: center;
 `
+
+export const HeaderMenu = styled.div`
+  display: flex;
+  align-items: center;
+`
