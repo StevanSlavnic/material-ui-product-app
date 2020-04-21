@@ -11,11 +11,11 @@ class Layout extends Component {
       mainScroll: 0,
     }
 
-    this.myRef = React.createRef()
+    this.scrollRef = React.createRef()
   }
 
   listenScrollEvent() {
-    if (this.myRef.current.scrollTop !== 0) {
+    if (this.scrollRef.current.scrollTop !== 0) {
       this.setState({
         mainScroll: 1,
       })
@@ -39,7 +39,7 @@ class Layout extends Component {
           displayAddProductComponent={displayAddProduct && displayAddProduct}
           scroll={mainScroll}
         />
-        <main onScroll={() => this.listenScrollEvent()} ref={this.myRef}>
+        <main onScroll={() => this.listenScrollEvent()} ref={this.scrollRef}>
           {this.props.children}
         </main>
       </div>

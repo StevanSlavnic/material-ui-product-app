@@ -1,4 +1,4 @@
-import { DISPLAY_ADD_PRODUCT } from './../actions/displayAddProduct'
+import { DISPLAY_ADD_PRODUCT } from 'src/actions/displayAddProduct'
 
 export default function displayAddProduct(
   state = {

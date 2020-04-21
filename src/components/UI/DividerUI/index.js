@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Divider from '@material-ui/core/Divider'
-import theme from '../../../theme'
+import theme from 'src/theme'
 
 function getSize(props) {
   return theme.spacing(props.size) || 0

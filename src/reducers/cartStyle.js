@@ -1,4 +1,4 @@
-import { CHANGE_CART_STYLE } from './../actions/cartStyle'
+import { CHANGE_CART_STYLE } from 'src/actions/cartStyle'
 
 export default function cartStyle(
   state = {

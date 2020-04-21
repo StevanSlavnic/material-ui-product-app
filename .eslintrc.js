@@ -1,6 +1,8 @@
 module.exports = {
   parser: 'babel-eslint',
   env: {
+    node: true,
+    commonjs: true,
     browser: true,
     es6: true,
   },
@@ -18,4 +20,11 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {},
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
 }

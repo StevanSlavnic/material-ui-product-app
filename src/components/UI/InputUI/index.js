@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { InputBase } from '@material-ui/core'
-import { formatTextSize } from '../../../helpers'
+import { formatTextSize } from 'src/helpers'
 
 export const InputUI = styled(InputBase)`
   border: 1px solid #ddd;

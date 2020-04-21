@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Typography } from '@material-ui/core'
-import { formatTextSize } from '../../../../helpers'
+import { formatTextSize } from 'src/helpers'
 
 const TextUI = styled(Typography)`
   font-size: ${props => formatTextSize(props.size)};

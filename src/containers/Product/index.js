@@ -19,10 +19,10 @@ import {
   TextUI,
   SpacerUI,
   ChipUI,
-} from '../../components/UI'
+} from 'src/components/UI'
 import ProductAdd from './ProductAdd'
-import { fetchProduct } from '../../actions/product'
-import { displayAddProduct } from '../../actions/displayAddProduct'
+import { fetchProduct } from 'src/actions/product'
+import { displayAddProduct } from 'src/actions/displayAddProduct'
 
 class Product extends Component {
   constructor(props) {

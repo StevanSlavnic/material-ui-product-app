@@ -3,7 +3,7 @@ import {
   PRODUCT_SUCCESS,
   PRODUCT_FAILURE,
   ADDING_QUANTITY,
-} from './../actions/product'
+} from 'src/actions/product'
 
 export default function product(
   state = {

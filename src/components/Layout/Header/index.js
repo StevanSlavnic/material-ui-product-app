@@ -10,10 +10,10 @@ import {
   TextUI,
   ToolbarUI,
   SwingUI,
-} from '../../UI'
-import { HeaderWrap } from './Styled'
-import theme from '../../../theme'
-import ProductAdd from '../../../containers/Product/ProductAdd'
+} from 'src/components/UI'
+import { HeaderWrap, HeaderMenu } from './Styled'
+import theme from 'src/theme'
+import ProductAdd from 'src/containers/Product/ProductAdd'
 
 function ElevationScroll(props) {
   const { children } = props
@@ -60,7 +60,7 @@ export default function ElevateAppBar(props) {
                 </div>
 
                 <>{!props.displayAddProductComponent && <ProductAdd />}</>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <HeaderMenu>
                   <IconButtonUI
                     edge='start'
                     color='inherit'
@@ -97,7 +97,7 @@ export default function ElevateAppBar(props) {
                       />
                     </IconButtonUI>
                   </SwingUI>
-                </div>
+                </HeaderMenu>
               </HeaderWrap>
             </ToolbarUI>
           </Container>

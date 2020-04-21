@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { Product } from './containers'
+import { Product } from 'src/containers'
 import Layout from './components/Layout'
-import './assets/icons/css/pure.css'
-import './assets/fonts/fonts.css'
-import './App.scss'
+import 'src/assets/icons/css/pure.css'
+import 'src/assets/fonts/fonts.css'
+import 'src/App.scss'
 
 class App extends Component {
   render() {

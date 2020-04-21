@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { ProductAddWrap } from '../Styled'
 import { Hidden } from '@material-ui/core'
-import { ButtonUI, IconUI, InputUI, SpacerUI } from '../../../components/UI'
-import { addingQuantity } from '../../../actions/product'
-import { changeCartStyle } from '../../../actions/cartStyle'
+import { ButtonUI, IconUI, InputUI, SpacerUI } from 'src/components/UI'
+import { addingQuantity } from 'src/actions/product'
+import { changeCartStyle } from 'src/actions/cartStyle'
 
 class ProductAdd extends Component {
   constructor(props) {

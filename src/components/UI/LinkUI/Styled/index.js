@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { Link } from '@material-ui/core'
-import { formatTextSize } from '../../../../helpers'
+import { formatTextSize } from 'src/helpers'
 
 const LinkUI = styled(Link)`
   ${props => `font-size: ${formatTextSize(props.size)}`};

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Chip } from '@material-ui/core'
-import { formatTextSize } from '../../../helpers'
-import theme from '../../../theme'
+import { formatTextSize } from 'src/helpers'
+import theme from 'src/theme'
 
 function getSize(props) {
   return theme.spacing(props.spacing) || 0

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
-import { formatTextSize } from '../../../helpers'
+import { formatTextSize } from 'src/helpers'
 
 export const ButtonUI = styled(Button)`
   border-radius: 0;
